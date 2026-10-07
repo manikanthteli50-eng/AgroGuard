@@ -3,17 +3,21 @@ Dataset Preparation Script
 Organizes PlantVillage dataset from archive folder
 """
 
-import os
-import shutil
 import random
+import shutil
 from pathlib import Path
 
+BASE_DIR = Path(__file__).resolve().parent
+PROJECT_ROOT = BASE_DIR.parent
+
 # Source dataset path
-SOURCE_DIR = "../../archive/PlantVillage"
+SOURCE_DIR = PROJECT_ROOT / "archive" / "PlantVillage"
+NESTED_SOURCE_DIR = PROJECT_ROOT / "archive" / "archive" / "PlantVillage"
+LEGACY_SOURCE_DIR = PROJECT_ROOT.parent / "archive" / "PlantVillage"
 
 # Target directories
-TRAIN_DIR = "../dataset/train"
-TEST_DIR = "../dataset/test"
+TRAIN_DIR = PROJECT_ROOT / "dataset" / "train"
+TEST_DIR = PROJECT_ROOT / "dataset" / "test"
 
 # Classes to use (matching your archive folder structure)
 SELECTED_CLASSES = {
@@ -44,13 +48,29 @@ MAX_PER_CLASS = 400  # Limit images per class for faster training (set to None f
 
 
 def prepare_dataset():
-    print("📂 Preparing dataset from archive folder...\n")
-    
+    source_dir = next(
+        (
+            candidate
+            for candidate in (SOURCE_DIR, NESTED_SOURCE_DIR, LEGACY_SOURCE_DIR)
+            if candidate.is_dir()
+        ),
+        SOURCE_DIR,
+    )
+
+    print(f"📂 Preparing dataset from {source_dir}...\n")
+
+    if not source_dir.exists():
+        raise FileNotFoundError(
+            "PlantVillage dataset not found. Checked "
+            f"{SOURCE_DIR}, {NESTED_SOURCE_DIR}, and {LEGACY_SOURCE_DIR}. "
+            f"Please download or extract the archive to {SOURCE_DIR}."
+        )
+
     train_path = Path(TRAIN_DIR)
     test_path = Path(TEST_DIR)
-    
+
     for source_class, target_class in SELECTED_CLASSES.items():
-        source_folder = Path(SOURCE_DIR) / source_class
+        source_folder = source_dir / source_class
         
         if not source_folder.exists():
             print(f"  ⚠️  Skipping {source_class} - folder not found")

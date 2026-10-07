@@ -13,47 +13,51 @@ Crop diseases are a major challenge in agriculture, causing 20–40% crop loss w
 ## 📁 Project Structure
 
 ```
-AgroGuard-AI/
-├── frontend/              # Frontend (HTML/CSS/JS)
-│   ├── index.html
-│   ├── css/style.css
-│   └── js/main.js
+AI-BASED-CROP-DISEASE-DETECTION-SYSTEM/
+├── frontend-react/        # React frontend
+│   ├── src/
+│   ├── public/
+│   └── package.json
 │
 ├── backend/               # Backend (Flask API)
-│   ├── app.py            # Main Flask application (Production-ready)
-│   ├── train_model.py    # CNN training script
-│   ├── prepare_dataset.py # Dataset preparation
+│   ├── app.py
+│   ├── train_model.py
+│   ├── prepare_dataset.py
+│   ├── evaluate_model.py
 │   ├── requirements.txt
-│   ├── model/            # Trained model (generated)
-│   └── uploads/          # Temporary uploads
+│   └── model/            # Trained model (generated)
 │
-└── dataset/              # Training data (generated)
-    ├── train/
-    └── test/
+├── archive/              # PlantVillage dataset (downloaded separately)
+├── dataset/               # Training data (generated)
+│   ├── train/
+│   └── test/
+└── README.md
 ```
 
 ## 🚀 Quick Start
 
+From the project root, you can run the scripts without changing directories:
+
 ### Step 1: Prepare Dataset
 
 ```bash
-cd AgroGuard-AI/backend
-python prepare_dataset.py
+python backend/prepare_dataset.py
 ```
 
-This will organize images from the `archive/PlantVillage` folder into train/test splits.
+This organizes images from the `archive/PlantVillage` folder into train/test splits under `dataset/`.
 
 ### Step 2: Train the Model
 
 ```bash
-python train_model.py
+python backend/train_model.py
 ```
 
-Training takes 15-30 minutes. Model will be saved to `backend/model/`.
+Training takes 15-30 minutes. The model is saved to `backend/model/`.
 
 ### Step 3: Start Backend Server
 
 ```bash
+cd backend
 pip install -r requirements.txt
 python app.py
 ```
@@ -62,14 +66,15 @@ Backend runs on `http://localhost:5000`
 
 ### Step 4: Open Frontend
 
-Open `frontend/index.html` in your browser or use a local server:
+Open `frontend-react/index.html` in your browser or start the React dev server:
 
 ```bash
-cd ../frontend
-python -m http.server 8000
+cd frontend-react
+npm install
+npm run dev
 ```
 
-Visit `http://localhost:8000`
+Visit the local Vite URL shown in the terminal.
 
 ## 🔑 Weather API (Optional)
 
@@ -118,3 +123,7 @@ AgroGuard AI helps:
 - Promote AI-based smart farming solutions
 
 Built with ❤️ for farmers
+
+
+
+Final year project

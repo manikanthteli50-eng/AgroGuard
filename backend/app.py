@@ -32,8 +32,9 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Model Configuration
-MODEL_PATH = "model/crop_disease_model.h5"
-CLASS_NAMES_PATH = "model/class_names.json"
+BASE_DIR = Path(__file__).resolve().parent
+MODEL_PATH = str(BASE_DIR / "model" / "crop_disease_model.h5")
+CLASS_NAMES_PATH = str(BASE_DIR / "model" / "class_names.json")
 
 model = None
 class_names = []

@@ -1,13 +1,14 @@
-tensorflow==2.18.0          # CNN model
-numpy==1.26.4               # Array operations
-matplotlib==3.9.0           # Plotting
-opencv-python-headless==4.10.0.84  # Image processing
-flask==3.0.3                # Web API
-flask-cors==4.0.1           # CORS support
-pymongo==4.9.2              # MongoDB driver
-python-dotenv==1.0.0        # .env configuration loading
-scikit-learn==1.5.1         # ML utilities
-Pillow==10.4.0              # Image handling
-requests==2.32.3            # HTTP requests
-Werkzeug==3.0.3             # Flask dependency
-gunicorn==22.0.0            # Production server
+﻿tensorflow>=2.22.0rc0
+numpy>=1.26.0
+matplotlib>=3.9.0
+opencv-python-headless>=4.10.0.0
+flask>=3.0.0
+flask-cors>=4.0.0
+pymongo>=4.0.0
+python-dotenv>=1.0.0
+scikit-learn>=1.5.0
+Pillow>=10.0.0
+requests>=2.32.0
+kagglehub
+Werkzeug>=3.0.0
+gunicorn>=22.0.0

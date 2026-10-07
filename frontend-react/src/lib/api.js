@@ -7,7 +7,9 @@ import { getToken } from './storage'
  * http://localhost:5000 by Vite; we fall back to absolute URLs otherwise.
  */
 
-const BASES = ['', 'http://localhost:5000', 'http://127.0.0.1:5000']
+const BASES = import.meta.env.VITE_API_URL
+  ? [import.meta.env.VITE_API_URL]
+  : ['', 'http://localhost:5000', 'http://127.0.0.1:5000']
 
 function authHeaders(extra = {}) {
   const token = getToken()
