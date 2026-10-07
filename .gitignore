@@ -9,6 +9,7 @@ __pycache__/
 .Python
 env/
 venv/
+.venv/
 ENV/
 build/
 develop-eggs/
@@ -27,6 +28,7 @@ wheels/
 *.egg
 
 # Dataset and model files
+archive/
 dataset/
 backend/model/
 backend/uploads/
